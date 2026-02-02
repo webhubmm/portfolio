@@ -1,0 +1,329 @@
+/* Webhub Portfolio – Global Design System (docs/global.md) */
+/* Font families set by layout (next/font/local from src/assets/fonts) – all reusable; responsive */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Webhub color palette */
+  --color-primary: #182257;
+  --color-secondary: #354BBD;
+  --color-third: #435FEF;
+  --color-fourth: #A3AFEF;
+  --C4: #435FEF; /* primary button background */
+
+  /* Text colors */
+  --color-text-on-white: #202957;
+  --color-text-on-dark: #182257;
+  --color-subtitle: #27378A;
+  --color-content: #FFF;
+  --color-link: #FFF;
+
+  /* Typography – use next/font variables from body (--font-futura-pt, --font-futura-pt-cond, --font-tt-travels) in classes below; do not redefine here or they resolve empty in :root */
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* Border radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Backgrounds (optional) */
+  --color-background: #0a0a12;
+  --color-surface: #fff;
+  --color-border: #e2e8f0;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    font-family: var(--font-tt-travels), sans-serif;
+    color: var(--color-text-on-white);
+    background-color: var(--color-surface);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Default headings use title font */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-futura-pt), sans-serif;
+    color: var(--color-primary);
+  }
+}
+
+@layer components {
+  /* ---- Main title (e.g. hero) ---- */
+  .text-main-title {
+    color: var(--color-primary);
+    text-align: center;
+    font-family: var(--font-futura-pt), sans-serif;
+    font-size: clamp(2.5rem, 8vw, 96px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 102%;
+    letter-spacing: 1.92px;
+    text-transform: uppercase;
+  }
+
+  /* Alias: hero title uses same as main title */
+  .text-hero-title {
+    color: var(--color-primary);
+    text-align: center;
+    font-family: var(--font-futura-pt), sans-serif;
+    font-size: clamp(2.5rem, 8vw, 96px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 102%;
+    letter-spacing: 1.92px;
+    text-transform: uppercase;
+  }
+
+  /* ---- Title ---- */
+  .text-title {
+    color: var(--color-primary);
+    text-align: center;
+    font-family: var(--font-futura-pt), sans-serif;
+    font-size: clamp(2.5rem, 8vw, 96px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 102%;
+    letter-spacing: 1.92px;
+    text-transform: uppercase;
+  }
+
+  /* ---- Subtitle (H3 style) ---- */
+  .text-subtitle {
+    color: var(--color-subtitle);
+    text-align: center;
+    font-family: var(--font-futura-pt-cond), sans-serif;
+    font-size: clamp(1.75rem, 4.5vw, 48px);
+    font-style: normal;
+    font-weight: 800;
+    line-height: 92%;
+    letter-spacing: -0.96px;
+    text-transform: uppercase;
+  }
+
+  /* ---- Content body ---- */
+  .text-content {
+    color: var(--color-content);
+    text-align: center;
+    font-family: var(--font-tt-travels), sans-serif;
+    font-size: clamp(1rem, 2vw, 20px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+  }
+
+  /* ---- Link ---- */
+  .text-link {
+    color: var(--color-link);
+    text-align: center;
+    font-family: var(--font-tt-travels), sans-serif;
+    font-size: clamp(0.875rem, 1.5vw, 16px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .text-link:hover {
+    opacity: 0.9;
+    color: var(--color-fourth);
+  }
+
+  /* ---- Context: text on dark background ---- */
+  .text-on-dark {
+    color: var(--color-text-on-dark);
+  }
+
+  .text-on-white {
+    color: var(--color-text-on-white);
+  }
+
+  /* ---- Buttons (reusable) ---- */
+  .btn-base {
+    display: flex;
+    padding: 20px 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    font-family: var(--font-tt-travels), sans-serif;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--C4, #435FEF);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-secondary);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-fourth);
+    color: var(--color-primary);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-fourth);
+    color: var(--color-primary);
+  }
+
+  /* ---- Hero badge button (docs/ai.md) ---- */
+  .btn-badge {
+    display: flex;
+    padding: 8px 24px 8px 8px;
+    align-items: center;
+    gap: 16px;
+    border-radius: 100px;
+    border: 1px solid rgba(68, 96, 239, 0.3);
+    background: rgba(98, 118, 218, 0.1);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-badge:hover {
+    border-color: rgba(68, 96, 239, 0.5);
+    background: rgba(98, 118, 218, 0.15);
+  }
+
+  .hero-badge-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 100px;
+    border: 2px solid #202957;
+    background: lightgray 50% / cover no-repeat;
+    object-fit: cover;
+  }
+
+  /* ---- Cards ---- */
+  .card-base {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    transition: box-shadow 0.2s;
+  }
+
+  .card-base:hover {
+    box-shadow: 0 4px 20px rgba(24, 34, 87, 0.12);
+  }
+
+  /* ---- Navbar layout (docs/navbar.md) ---- */
+  .navbar-layout {
+    display: flex;
+    width: 100%;
+    max-width: 1512px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 100px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media (max-width: 1024px) {
+    .navbar-layout {
+      padding: 24px 48px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .navbar-layout {
+      padding: 20px 24px;
+    }
+  }
+
+  /* ---- Layout ---- */
+  .container-custom {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-custom {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .section-padding {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-padding {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+  }
+
+  /* ---- Utilities ---- */
+  .gradient-text-webhub {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-third));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .bg-primary { background-color: var(--color-primary); }
+  .bg-secondary { background-color: var(--color-secondary); }
+  .bg-third { background-color: var(--color-third); }
+  .bg-fourth { background-color: var(--color-fourth); }
+  .text-primary { color: var(--color-primary); }
+  .text-secondary { color: var(--color-secondary); }
+  .text-third { color: var(--color-third); }
+  .text-fourth { color: var(--color-fourth); }
+  .text-subtitle-color { color: var(--color-subtitle); }
+}
