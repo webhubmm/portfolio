@@ -31,13 +31,26 @@ const ttTravels = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Webhub Portfolio | Software Service",
-  description: "Professional software service portfolio website",
-  keywords: ["portfolio", "software", "developer", "web development"],
-  authors: [{ name: "Your Name" }],
+  title: "WebHub Asia | Custom Software Development",
+  description:
+    "Global custom software development company offering blockchain apps, AI chatbots, SaaS solutions, UI/UX design, and enterprise software.",
+  keywords: [
+    "custom software development",
+    "blockchain applications",
+    "AI chatbot",
+    "SaaS solutions",
+    "UI/UX design",
+    "enterprise software",
+    "WebHub Asia",
+  ],
+  authors: [{ name: "WebHub Asia" }],
+  icons: {
+    icon: "/logo.png",
+  },
   openGraph: {
-    title: "Webhub Portfolio | Software Service",
-    description: "Professional software service portfolio website",
+    title: "WebHub Asia | Custom Software Development",
+    description:
+      "Global custom software development company offering blockchain apps, AI chatbots, SaaS solutions, UI/UX design, and enterprise software.",
     type: "website",
   },
 };

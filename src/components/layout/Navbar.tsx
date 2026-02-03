@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,14 +9,40 @@ import logo from "@/assets/images/logo.png";
 const navLinks = [
   { href: "#about", label: "About Us" },
   { href: "#service", label: "Service" },
+  { href: "#projects", label: "Projects" },
+  { href: "#testimonial", label: "Testimonials" },
   { href: "#learn", label: "Learn" },
 ] as const;
 
+const SCROLL_THRESHOLD = 10;
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isAtTop, setIsAtTop] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setIsAtTop(y <= SCROLL_THRESHOLD);
+      if (y > lastScrollY.current && y > 80) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      lastScrollY.current = y;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-out ${
+        !isAtTop ? "bg-white shadow-sm" : "bg-transparent"
+      } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+    >
       <div className="navbar-layout relative">
         {/* Logo - left */}
         <Link href="/" className="flex-shrink-0 z-10">
@@ -31,12 +57,12 @@ export default function Navbar() {
         </Link>
 
         {/* Center links - desktop: truly centered in viewport (155px spacing) */}
-        <nav className="hidden md:flex items-center gap-[155px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <nav className="hidden md:flex items-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className="text-primary hover:text-third text-base font-medium transition-colors"
+              className="link-nav-hover text-primary text-base font-medium"
             >
               {label}
             </Link>
@@ -45,9 +71,9 @@ export default function Navbar() {
 
         {/* Primary button - right */}
         <div className="hidden md:block flex-shrink-0 z-10">
-          <Link href="#contact" className="btn-base btn-primary inline-flex">
+          <a href="https://calendly.com/htetmyatsoe492/30min" target="_blank" rel="noopener noreferrer" className="btn-base btn-primary inline-flex">
             Schedule a Meeting
-          </Link>
+          </a>
         </div>
 
         {/* Mobile: hamburger / X toggle (always visible; X when menu open) */}
@@ -88,20 +114,22 @@ export default function Navbar() {
                   key={href}
                   href={href}
                   onClick={() => setIsOpen(false)}
-                  className="text-primary hover:text-third py-3 text-2xl font-medium transition-colors"
+                  className="link-nav-hover text-primary py-3 text-2xl font-medium"
                 >
                   {label}
                 </Link>
               ))}
             </nav>
             <div className="mt-auto pt-6 flex justify-center">
-              <Link
-                href="#contact"
+              <a
+                href="https://calendly.com/htetmyatsoe492/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
                 className="btn-base btn-primary inline-flex w-full max-w-xs justify-center"
               >
                 Schedule a Meeting
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}

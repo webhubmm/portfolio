@@ -9,13 +9,13 @@ import client3 from "@/assets/images/client-3.png";
 
 export default function Hero() {
   return (
-    <section className="section-center  px-4 py-20">
-      <div className="min-h-[90vh] flex flex-col items-center justify-center gap-8 md:gap-10 w-full max-w-6xl mx-auto">
+    <section className="section-container py-20 flex flex-col items-center justify-center text-center">
+      <div className="min-h-[90vh] flex flex-col items-center justify-center gap-8 md:gap-10 w-full">
         {/* Badge button: "What Others Say About Us ->" with client avatars */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
           <Link href="#about" className="btn-badge inline-flex">
             <span className="flex items-center -space-x-4">
@@ -50,18 +50,18 @@ export default function Hero() {
         {/* Main title */}
         <motion.h1
           className="text-main-title w-full mx-auto"
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
           Innovative Software Solutions for Businesses and Startups
         </motion.h1>
 
         {/* Primary button */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <Link href="#contact" className="btn-base btn-primary inline-flex">
             Book a Free Consultation
