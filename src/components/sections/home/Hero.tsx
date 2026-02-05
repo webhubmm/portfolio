@@ -54,7 +54,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          Innovative Software Solutions for Businesses and Startups
+          Innovative <span className="text-secondary">Software Solutions</span> for Businesses and Startups
         </motion.h1>
 
         {/* Primary button */}
