@@ -124,7 +124,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden fixed inset-y-0 left-0 w-full max-w-full min-h-screen bg-white z-40 flex flex-col pt-24 pb-8 px-6 shadow-xl"
+            className="md:hidden fixed inset-y-0 left-0 w-full max-w-full min-h-screen bg-white z-40 flex flex-col pt-24 pb-12 px-6 shadow-xl"
           >
             <nav className="flex flex-col items-center justify-center flex-1 gap-4 text-center">
               {navLinks.map(({ href, label }) => (
