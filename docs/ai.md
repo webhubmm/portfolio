@@ -445,3 +445,19 @@ gap: 12px;
 align-self: stretch;
 border-top: 1px solid #1F2B15;
 
+
+
+===========
+
+I want you to develop the email configuration , if user send and submit the contact form , I want you to send message to my email "htetmyatsoe126@gmail.com"
+
+here is my mail config 
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=htetmyatsoe492@gmail.com
+MAIL_PASSWORD=dknquqtzrdiqzupd
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=htetmyatsoe492@gmail.com
+MAIL_FROM_NAME="Patient Journey"

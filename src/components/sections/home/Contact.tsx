@@ -1,9 +1,45 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { scrollViewport, scrollTransition } from "@/lib/scrollAnimations";
 
 export default function Contact() {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    };
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+
+      if (!res.ok) {
+        throw new Error(json.error ?? "Failed to send");
+      }
+      setStatus("success");
+      form.reset();
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(err instanceof Error ? err.message : "Something went wrong");
+    }
+  }
+
   return (
     <section id="contact" className="section-container py-12 md:py-16">
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start">
@@ -42,7 +78,7 @@ export default function Contact() {
         >
           <form
             className="w-full"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <div className="contact-form-field">
               <label htmlFor="contact-name" className="contact-form-label">
@@ -83,8 +119,18 @@ export default function Contact() {
                 required
               />
             </div>
-            <button type="submit" className="contact-form-submit">
-              Submit
+            {status === "success" && (
+              <p className="text-green-400 text-sm">Thanks! Your message was sent.</p>
+            )}
+            {status === "error" && (
+              <p className="text-red-400 text-sm">{errorMessage}</p>
+            )}
+            <button
+              type="submit"
+              className="contact-form-submit disabled:opacity-60 disabled:cursor-not-allowed"
+              disabled={status === "loading"}
+            >
+              {status === "loading" ? "Sending..." : "Submit"}
             </button>
           </form>
         </motion.div>

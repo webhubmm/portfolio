@@ -4,37 +4,39 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { scrollViewport, scrollTransition } from "@/lib/scrollAnimations";
 import testimonialBg from "@/assets/images/testimonial-bg.png";
-import avatar1 from "@/assets/images/avatar-1.png";
-import avatar2 from "@/assets/images/avatar-2.png";
+import vitalTech from "@/assets/images/vital-tech.png";
+import virtuLearn from "@/assets/images/virtu-learn.png";
+import chinDictionary from "@/assets/images/chin-dictionary.png";
+import wisdom from "@/assets/images/wisdom.jpeg";
 
 const testimonials = [
   {
-    avatar: avatar1,
-    name: "Jane Cooper",
-    role: "CEO, VirtuLearn",
+    logo: vitalTech,
+    name: "Phone Myat",
+    role: "CTO at Vital Tech",
     message:
-      "Webhub delivered an outstanding platform that exceeded our expectations. Their team's expertise and dedication made the entire process smooth and efficient.",
+      "WebHub Asia is a dependable technology partner. Their team delivers quality solutions, communicates clearly, and consistently supports our product growth and innovation.",
   },
   {
-    avatar: avatar2,
-    name: "Robert Fox",
-    role: "Founder, Sports Empire",
+    logo: virtuLearn,
+    name: "Tina Han",
+    role: "Founder at VirtuLearn International",
     message:
-      "Professional, responsive, and results-driven. We couldn't be happier with our new booking system. Highly recommend for any serious project.",
+      "Working with WebHub Asia has been fantastic. They transformed our ideas into a powerful learning platform with professionalism, speed, and excellent support.",
   },
   {
-    avatar: avatar1,
-    name: "Sarah Wilson",
-    role: "CTO, TechStart",
+    logo: chinDictionary,
+    name: "Shwe Hein",
+    role: "Founder at Chin Dictionary App",
     message:
-      "From concept to launch, the team was exceptional. Clean code, on-time delivery, and great communication throughout.",
+      "WebHub Asia understood our vision and built a reliable, user-friendly dictionary platform. Their dedication, speed, and technical skill truly impressed us.",
   },
   {
-    avatar: avatar2,
-    name: "Mike Johnson",
-    role: "Product Lead",
+    logo: wisdom,
+    name: "Harry Om",
+    role: "Founder at Wisdom Audio Book App",
     message:
-      "They transformed our vision into reality. The platform is fast, scalable, and our users love it. Five stars.",
+      "The WebHub Asia team delivered our audiobook platform smoothly. Great communication, strong execution, and ongoing support made them an ideal partner.",
   },
 ];
 
@@ -42,12 +44,12 @@ function TestimonialCard({ item }: { item: (typeof testimonials)[0] }) {
   return (
     <div className="testimonial-card flex-shrink-0">
       <div className="flex items-center gap-4 justify-center flex-wrap">
-        <div className="testimonial-card-avatar">
+        <div className="testimonial-card-logo">
           <Image
-            src={item.avatar}
-            alt={item.name}
+            src={item.logo}
+            alt={item.role}
             fill
-            className="object-cover"
+            className="object-contain"
             sizes="80px"
           />
         </div>

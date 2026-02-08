@@ -460,6 +460,18 @@
     color: #FFF;
   }
 
+  .project-card--3 .project-card-title,
+  .project-card--3 .project-card-text {
+    color: #FFF;
+  }
+
+  .project-card-image-placeholder {
+    position: absolute;
+    inset: 0;
+    background: #161C3D;
+    border-radius: 28px;
+  }
+
   .project-card-image {
     height: 50%;
     min-height: 50%;
@@ -629,14 +641,24 @@
     flex-shrink: 0;
   }
 
-  .testimonial-card-avatar {
+  .testimonial-card-avatar,
+  .testimonial-card-logo {
     width: 80px;
     height: 80px;
     flex-shrink: 0;
     aspect-ratio: 1 / 1;
-    border-radius: 80px;
     overflow: hidden;
     position: relative;
+  }
+
+  .testimonial-card-avatar {
+    border-radius: 80px;
+  }
+
+  .testimonial-card-logo {
+    border-radius: 12px;
+    padding: 8px;
+    background: #f8fafc;
   }
 
   .testimonial-card-name {

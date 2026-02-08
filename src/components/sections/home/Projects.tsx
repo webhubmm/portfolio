@@ -14,6 +14,7 @@ const successStories = [
     content:
       "A multilingual LMS platform enabling global learners to master languages through structured courses, interactive lessons, and scalable education technology.",
     cardBg: "#CDE3EB",
+    blankImage: false,
   },
   {
     image: successStory2,
@@ -22,6 +23,16 @@ const successStories = [
     content:
       "A SaaS management system empowering sports venue owners to manage courts, tables, bookings, schedules, and operations efficiently.",
     cardBg: "#4C504C",
+    blankImage: false,
+  },
+  {
+    image: null,
+    imageAlt: "Chin Dictionary App",
+    title: "Chin Dictionary App",
+    content:
+      "A reliable, user-friendly dictionary platform built with dedication, speed, and technical skill. WebHub Asia understood the vision and delivered an impressive product.",
+    cardBg: "#161C3D",
+    blankImage: true,
   },
 ];
 
@@ -42,7 +53,7 @@ export default function Projects() {
 
         {/* Two cards in one row */}
         <motion.div
-          className="w-full grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -52,17 +63,21 @@ export default function Projects() {
             <motion.div
               key={index}
               variants={staggerItem}
-              className={index === 0 ? "project-card project-card--1" : "project-card project-card--2"}
+              className={`project-card project-card--${index + 1}`}
               style={{ backgroundColor: item.cardBg, height: "420px", minHeight: "420px" }}
             >
               <div className="project-card-image">
-                <Image
-                  src={item.image}
-                  alt={item.imageAlt}
-                  fill
-                  className="object-cover object-center w-full"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
+                {item.blankImage ? (
+                  <div className="project-card-image-placeholder" />
+                ) : (
+                  <Image
+                    src={item.image!}
+                    alt={item.imageAlt}
+                    fill
+                    className="object-cover object-center w-full"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                )}
               </div>
               <div className="project-card-body">
                 <h3 className="project-card-title">{item.title}</h3>

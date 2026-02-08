@@ -1,12 +1,20 @@
 import { MetadataRoute } from "next";
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://webhubasia.com";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://yourdomain.com",
+      url: baseUrl,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.5,
     },
   ];
 }

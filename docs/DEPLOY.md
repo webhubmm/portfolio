@@ -239,6 +239,25 @@ The workflow will SSH to the server, pull latest, run `npm ci`, `npm run build`,
 
 ---
 
+## Mail (contact form)
+
+The contact form sends emails via SMTP. Set these in `.env.local` locally and in your server's environment:
+
+| Variable | Example | Required |
+|----------|---------|----------|
+| `MAIL_HOST` | smtp.gmail.com | No (default) |
+| `MAIL_PORT` | 587 | No |
+| `MAIL_USERNAME` | your@gmail.com | Yes |
+| `MAIL_PASSWORD` | app password | Yes |
+| `MAIL_FROM_ADDRESS` | your@gmail.com | No |
+| `MAIL_FROM_NAME` | Webhub Portfolio | No |
+
+For Gmail, use an [App Password](https://myaccount.google.com/apppasswords). Messages are sent to `htetmyatsoe126@gmail.com`.
+
+Copy `.env.example` to `.env.local` and fill in your values.
+
+---
+
 ## Summary checklist
 
 | Step | What |

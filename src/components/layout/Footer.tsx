@@ -8,6 +8,7 @@ const footerLinks = [
   { href: "#learn", label: "Learn" },
   { href: "#testimonial", label: "Testimonials" },
   { href: "#contact", label: "Contact Us" },
+  { href: "/privacy", label: "Privacy Policy" },
 ] as const;
 
 const socialLinks = [

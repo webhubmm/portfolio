@@ -4,11 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { scrollViewport, scrollTransition } from "@/lib/scrollAnimations";
-import virtuDetailsImg from "@/assets/images/virtu-details.png";
-import virtuLendingImg from "@/assets/images/virtu-lending.png";
-import seAppBlurImg from "@/assets/images/se-app-blur.png";
-import seAppImg from "@/assets/images/se-app.png";
-import seWebAppImg from "@/assets/images/se-web-app.png";
+import customSoftwareImg from "@/assets/images/custom-software.png";
 import seProductImg from "@/assets/images/se-product.png";
 import aiProductImg from "@/assets/images/ai-product.png";
 
@@ -49,7 +45,7 @@ export default function Service() {
           </motion.p>
         </div>
 
-        {/* Card: gradient bg, center image, left/right background images */}
+        {/* Card: gradient bg, single center image */}
         <motion.div
           className="w-full mt-4"
           initial={{ opacity: 0, y: 28 }}
@@ -58,38 +54,15 @@ export default function Service() {
           transition={{ ...scrollTransition, delay: 0.18 }}
         >
           <div className="service-card relative flex items-center justify-center overflow-hidden">
-            {/* Left: 1st seAppBlur aligned with center; 2nd seApp under 3rd by 30% of center height */}
-            <div className="absolute left-0 top-0 w-full h-full pointer-events-none z-0">
-              <div className="service-card-image-wrap absolute -left-[5%] top-0 bottom-0">
-                <Image src={seAppBlurImg} alt="" fill className="object-cover object-left" sizes="420px" />
-              </div>
-              {/* 2nd: under 3rd (center) by 30% of center height => top = 50% + 30% = 80% (center of image at 80%) */}
-              <div className="service-card-image-wrap absolute left-[10%] top-[70%] -translate-y-1/2">
-                <Image src={seAppImg} alt="" fill className="object-contain object-left" sizes="320px" />
-              </div>
-            </div>
-
-            {/* Center = 3rd place */}
-            <div className="service-card-image-wrap relative z-10">
+            <div className="absolute inset-0 w-full h-full">
               <Image
-                src={virtuDetailsImg}
-                alt="Virtu details"
+                src={customSoftwareImg}
+                alt="Custom Website & Mobile Development"
                 fill
-                className="object-contain"
-                sizes="(max-width: 768px) 200px, 320px"
+                className="object-cover object-center"
+                sizes="100vw"
                 priority={false}
               />
-            </div>
-
-            {/* Right: 5th seWebApp aligned with center; 4th virtuLending under 3rd by 30% of center height */}
-            <div className="absolute right-0 top-0 w-full h-full pointer-events-none z-0">
-              <div className="service-card-image-wrap absolute right-0 top-1/2 -translate-y-1/2">
-                <Image src={seWebAppImg} alt="" fill className="object-contain object-right" sizes="320px" />
-              </div>
-              {/* 4th: under 3rd by 30% => center of image at 80% */}
-              <div className="service-card-image-wrap absolute right-[10%] top-[70%] -translate-y-1/2">
-                <Image src={virtuLendingImg} alt="" fill className="object-contain object-right" sizes="320px" />
-              </div>
             </div>
           </div>
         </motion.div>
