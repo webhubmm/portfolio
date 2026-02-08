@@ -585,6 +585,13 @@
     }
   }
 
+  @media (max-width: 410px) {
+    .testimonial-title {
+      padding-top: 0px;
+      transform: translateY(-8px);
+    }
+  }
+
   @keyframes testimonial-marquee {
     0% {
       transform: translateX(0);

@@ -59,8 +59,8 @@ export default function Service() {
                 src={customSoftwareImg}
                 alt="Custom Website & Mobile Development"
                 fill
-                className="object-cover object-center"
-                sizes="100vw"
+                className="object-contain md:object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 1200px"
                 priority={false}
               />
             </div>

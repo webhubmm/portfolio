@@ -17,7 +17,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Link href="#about" className="btn-badge inline-flex">
+          <Link href="#testimonial" className="btn-badge inline-flex">
             <span className="flex items-center -space-x-4">
               <Image
                 src={client1}

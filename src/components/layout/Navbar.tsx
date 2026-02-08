@@ -37,6 +37,24 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+    }
+
+    return () => {
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+    };
+  }, [isOpen]);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-out ${
@@ -108,13 +126,13 @@ export default function Navbar() {
             transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
             className="md:hidden fixed inset-y-0 left-0 w-full max-w-full min-h-screen bg-white z-40 flex flex-col pt-24 pb-8 px-6 shadow-xl"
           >
-            <nav className="flex flex-col items-center justify-center flex-1 gap-8 text-center">
+            <nav className="flex flex-col items-center justify-center flex-1 gap-4 text-center">
               {navLinks.map(({ href, label }) => (
                 <Link
                   key={href}
                   href={href}
                   onClick={() => setIsOpen(false)}
-                  className="link-nav-hover text-primary py-3 text-2xl font-medium"
+                  className="link-nav-hover text-primary py-2 text-2xl font-medium"
                 >
                   {label}
                 </Link>
