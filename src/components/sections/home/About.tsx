@@ -10,7 +10,7 @@ import { scrollViewport, scrollTransition, staggerContainer, staggerItem } from 
 const counterItems = [
   { value: "97%", label: "Satisfaction rate" },
   { value: "10+", label: "Delivered projects" },
-  { value: "5", label: "Years of experience" },
+  { value: "5+", label: "Years of experience" },
 ] as const;
 
 export default function About() {

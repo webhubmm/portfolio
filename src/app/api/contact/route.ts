@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import dns from "node:dns";
 import nodemailer from "nodemailer";
+
+const dnsPromises = dns.promises;
 
 const TO_EMAIL = "htetmyatsoe126@gmail.com";
 const CC_EMAIL = "nyiwinkhant.design@gmail.com";
@@ -21,7 +24,7 @@ export async function POST(request: NextRequest) {
     const user = process.env.MAIL_USERNAME;
     const pass = process.env.MAIL_PASSWORD;
     const fromAddress = process.env.MAIL_FROM_ADDRESS ?? user;
-    const fromName = process.env.MAIL_FROM_NAME ?? "Webhub Portfolio";
+    const fromName = process.env.MAIL_FROM_NAME ?? "Webhub Asia";
 
     if (!user || !pass) {
       return NextResponse.json(
@@ -30,11 +33,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Resolve host to IPv4 only to avoid ENETUNREACH on servers without IPv6 (Gmail often resolves to IPv6)
+    let smtpHost = host;
+    try {
+      const addresses = await dnsPromises.resolve4(host);
+      if (addresses.length > 0) smtpHost = addresses[0];
+    } catch {
+      // keep original host if resolve4 fails (e.g. already an IP)
+    }
+
     const transporter = nodemailer.createTransport({
-      host,
+      host: smtpHost,
       port,
       secure: port === 465,
       auth: { user, pass },
+      connectionTimeout: 10000,
+      // When connecting by IP, TLS still needs the real hostname for the certificate
+      ...(smtpHost !== host && {
+        tls: { servername: host },
+      }),
     });
 
     const mailOptions = {
