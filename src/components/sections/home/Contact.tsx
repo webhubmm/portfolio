@@ -1,45 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { scrollViewport, scrollTransition } from "@/lib/scrollAnimations";
+import { Mail, Phone, Linkedin, Facebook, Send, MessageCircle } from "lucide-react";
 
 export default function Contact() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      message: formData.get("message"),
-    };
-
-    setStatus("loading");
-    setErrorMessage("");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const json = await res.json();
-
-      if (!res.ok) {
-        throw new Error(json.error ?? "Failed to send");
-      }
-      setStatus("success");
-      form.reset();
-    } catch (err) {
-      setStatus("error");
-      setErrorMessage(err instanceof Error ? err.message : "Something went wrong");
-    }
-  }
-
   return (
     <section id="contact" className="section-container py-12 md:py-16">
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start">
@@ -68,7 +33,6 @@ export default function Contact() {
           </motion.p>
         </div>
 
-        {/* Right 6 col: form card */}
         <motion.div
           className="contact-form-card w-full"
           initial={{ opacity: 0, y: 28 }}
@@ -76,63 +40,86 @@ export default function Contact() {
           viewport={scrollViewport}
           transition={{ ...scrollTransition, delay: 0.12 }}
         >
-          <form
-            className="w-full"
-            onSubmit={handleSubmit}
-          >
-            <div className="contact-form-field">
-              <label htmlFor="contact-name" className="contact-form-label">
-                Name
-              </label>
-              <input
-                id="contact-name"
-                type="text"
-                name="name"
-                placeholder="Your name"
-                className="contact-form-input"
-                required
-              />
+          <h3 className="text-2xl font-semibold text-white mb-6">
+            Contact Information
+          </h3>
+
+          <div className="space-y-4 text-gray-300">
+
+            {/* Email */}
+            <div className="flex items-center gap-3 hover:text-white transition">
+              <Mail size={18} />
+              <div>
+                <a
+                  href="mailto:htetmyatsoe492@gmail.com"
+                  className="hover:underline"
+                >
+                  htetmyatsoe492@gmail.com
+                </a>
+              </div>
             </div>
-            <div className="contact-form-field">
-              <label htmlFor="contact-email" className="contact-form-label">
-                Email
-              </label>
-              <input
-                id="contact-email"
-                type="email"
-                name="email"
-                placeholder="your@email.com"
-                className="contact-form-input"
-                required
-              />
+
+            {/* WhatsApp */}
+            <div className="flex items-center gap-3 hover:text-white transition">
+              <MessageCircle size={18} />
+              <a
+                href="https://wa.me/6660795235"
+                target="_blank"
+                className="hover:underline"
+              >
+                WhatsApp: +66 60795235
+              </a>
             </div>
-            <div className="contact-form-field">
-              <label htmlFor="contact-message" className="contact-form-label">
-                Message
-              </label>
-              <textarea
-                id="contact-message"
-                name="message"
-                placeholder="Your message..."
-                className="contact-form-input contact-form-textarea"
-                rows={4}
-                required
-              />
+
+            {/* Telegram */}
+            <div className="flex items-center gap-3 hover:text-white transition">
+              <Send size={18} />
+              <a
+                href="https://t.me/htetmyatsoe"
+                target="_blank"
+                className="hover:underline"
+              >
+                Telegram: @htetmyatsoe
+              </a>
             </div>
-            {status === "success" && (
-              <p className="text-green-400 text-sm">Thanks! Your message was sent.</p>
-            )}
-            {status === "error" && (
-              <p className="text-red-400 text-sm">{errorMessage}</p>
-            )}
-            <button
-              type="submit"
-              className="contact-form-submit disabled:opacity-60 disabled:cursor-not-allowed"
-              disabled={status === "loading"}
-            >
-              {status === "loading" ? "Sending..." : "Submit"}
-            </button>
-          </form>
+
+            {/* Viber */}
+            <div className="flex items-center gap-3 hover:text-white transition">
+              <Phone size={18} />
+              <a
+                href="viber://chat?number=%2B959793148428"
+                className="hover:underline"
+              >
+                Viber: +95 9793148428
+              </a>
+            </div>
+
+            {/* LinkedIn */}
+            <div className="flex items-center gap-3 hover:text-white transition">
+              <Linkedin size={18} />
+              <a
+                href="https://www.linkedin.com/in/htet-myat-soe-aa350b242/"
+                target="_blank"
+                className="hover:underline"
+              >
+                LinkedIn Profile
+              </a>
+            </div>
+
+            {/* Facebook */}
+            <div className="flex items-center gap-3 hover:text-white transition">
+              <Facebook size={18} />
+              <a
+                href="https://www.facebook.com/share/1DdNisrS4R/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                Facebook Profile
+              </a>
+            </div>
+
+          </div>
         </motion.div>
       </div>
     </section>

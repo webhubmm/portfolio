@@ -241,20 +241,18 @@ The workflow will SSH to the server, pull latest, run `npm ci`, `npm run build`,
 
 ## Mail (contact form)
 
-The contact form sends emails via SMTP. Set these in `.env.local` locally and in your server's environment:
+The contact form uses [Resend](https://resend.com) (no SMTP, no port 587). Set in `.env.local` and on the server:
 
 | Variable | Example | Required |
 |----------|---------|----------|
-| `MAIL_HOST` | smtp.gmail.com | No (default) |
-| `MAIL_PORT` | 587 | No |
-| `MAIL_USERNAME` | your@gmail.com | Yes |
-| `MAIL_PASSWORD` | app password | Yes |
-| `MAIL_FROM_ADDRESS` | your@gmail.com | No |
-| `MAIL_FROM_NAME` | Webhub Portfolio | No |
+| `RESEND_API_KEY` | from [Resend dashboard](https://resend.com/api-keys) | Yes |
+| `RESEND_FROM_EMAIL` | `WebHub Asia <noreply@webhubasia.com>` | No (defaults to Resend test sender) |
 
-For Gmail, use an [App Password](https://myaccount.google.com/apppasswords). Messages are sent to `htetmyatsoe126@gmail.com`.
+1. Create an API key at [resend.com/api-keys](https://resend.com/api-keys).
+2. In Resend, add and verify your domain (e.g. webhubasia.com) so you can send from `noreply@webhubasia.com`.
+3. Set `RESEND_FROM_EMAIL="WebHub Asia <noreply@webhubasia.com>"` in production.
 
-Copy `.env.example` to `.env.local` and fill in your values.
+Messages are sent to `htetmyatsoe126@gmail.com` with CC to `nyiwinkhant.design@gmail.com`.
 
 ---
 
