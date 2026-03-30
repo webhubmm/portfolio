@@ -7,11 +7,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/images/logo.png";
 
 const navLinks = [
-  { href: "#about", label: "About Us" },
-  { href: "#service", label: "Service" },
-  { href: "#projects", label: "Projects" },
-  { href: "#testimonial", label: "Testimonials" },
-  { href: "#learn", label: "Learn" },
+  { href: "/#about", label: "About Us" },
+  { href: "/#service", label: "Service" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#testimonial", label: "Testimonials" },
+  { href: "/#learn", label: "Learn" },
 ] as const;
 
 const SCROLL_THRESHOLD = 10;
@@ -58,7 +58,7 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-out ${
-        !isAtTop ? "bg-white shadow-sm" : "bg-transparent"
+        !isAtTop ? "bg-white shadow-sm" : "bg-white"
       } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <div className="navbar-layout relative">

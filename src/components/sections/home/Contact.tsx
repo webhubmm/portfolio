@@ -98,11 +98,12 @@ export default function Contact() {
             <div className="flex items-center gap-3 hover:text-white transition">
               <Linkedin size={18} />
               <a
-                href="https://www.linkedin.com/in/htet-myat-soe-aa350b242/"
+                href="https://www.linkedin.com/company/webhub-asia"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="hover:underline"
               >
-                LinkedIn Profile
+                WebHub Asia on LinkedIn
               </a>
             </div>
 

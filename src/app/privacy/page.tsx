@@ -3,16 +3,30 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | WebHub Asia",
+  title: "Privacy Policy",
   description:
     "WebHub Asia Privacy Policy (GDPR compliant). How we collect, use, and protect your personal data.",
+  alternates: {
+    canonical: "/privacy",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "Privacy Policy | WebHub Asia",
+    description:
+      "WebHub Asia Privacy Policy (GDPR compliant). How we collect, use, and protect your personal data.",
+    url: "/privacy",
+    type: "website",
+  },
 };
 
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      <article className="section-container py-16 md:py-24">
+      <article className="section-container py-24">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold text-[#1C244C] mb-2">
             Privacy Policy

@@ -7,6 +7,7 @@ import testimonialBg from "@/assets/images/testimonial-bg.png";
 import vitalTech from "@/assets/images/vital-tech.png";
 import virtuLearn from "@/assets/images/virtu-learn.png";
 import chinDictionary from "@/assets/images/chin-dictionary.png";
+import nexora from "@/assets/images/nexora.png";
 import wisdom from "@/assets/images/wisdom.jpeg";
 
 const testimonials = [
@@ -37,6 +38,13 @@ const testimonials = [
     role: "Founder at Wisdom Audio Book App",
     message:
       "The WebHub Asia team delivered our audiobook platform smoothly. Great communication, strong execution, and ongoing support made them an ideal partner.",
+  },
+  {
+    logo: nexora,
+    name: "Aung Kyaw Moe",
+    role: "Founder at Nexora Bit",
+    message:
+      "WebHub Asia brought clarity and momentum to our product from day one. They listened carefully, shipped on time, and raised the bar on both design and engineering. We trust them as a long-term partner for Nexora Bit.",
   },
 ];
 

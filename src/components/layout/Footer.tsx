@@ -3,11 +3,11 @@ import Link from "next/link";
 import whiteLogo from "@/assets/images/white-logo.svg";
 
 const footerLinks = [
-  { href: "#about", label: "About us" },
-  { href: "#service", label: "Services" },
-  { href: "#learn", label: "Learn" },
-  { href: "#testimonial", label: "Testimonials" },
-  { href: "#contact", label: "Contact Us" },
+  { href: "/#about", label: "About us" },
+  { href: "/#service", label: "Services" },
+  { href: "/#learn", label: "Learn" },
+  { href: "/#testimonial", label: "Testimonials" },
+  { href: "/#contact", label: "Contact Us" },
   { href: "/privacy", label: "Privacy Policy" },
 ] as const;
 

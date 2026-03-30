@@ -727,7 +727,7 @@
   }
 
   .learn-section-image-wrap {
-    height: 437px;
+    height: 537px;
     align-self: stretch;
     border-radius: 28px;
     background: #161C3D;
@@ -757,7 +757,7 @@
 
   @media (max-width: 768px) {
     .learn-section-image-wrap {
-      height: 320px;
+      height: 420px;
     }
   }
 

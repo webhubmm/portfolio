@@ -5,6 +5,9 @@ import Image from "next/image";
 import { scrollViewport, scrollTransition, staggerContainer, staggerItem } from "@/lib/scrollAnimations";
 import successStory1 from "@/assets/images/success-story-1.png";
 import successStory2 from "@/assets/images/success-story-2.png";
+import successStory3 from "@/assets/images/success-story-3.png";
+import successStory4 from "@/assets/images/success-story-4.png";
+
 
 const successStories = [
   {
@@ -26,13 +29,22 @@ const successStories = [
     blankImage: false,
   },
   {
-    image: null,
+    image: successStory3,
     imageAlt: "Chin Dictionary App",
     title: "Chin Dictionary App",
     content:
       "A reliable, user-friendly dictionary platform built with dedication, speed, and technical skill. WebHub Asia understood the vision and delivered an impressive product.",
     cardBg: "#161C3D",
-    blankImage: true,
+    blankImage: false,
+  },
+  {
+    image: successStory4,
+    imageAlt: "Nexora Trading Platform",
+    title: "Nexora Trading Platform",
+    content:
+      "A powerful, intuitive trading platform developed with cutting-edge technology and a focus on security. WebHub Asia's expertise delivered a truly sophisticated solution.",
+    cardBg: "#ddd",
+    blankImage: false,
   },
 ];
 
