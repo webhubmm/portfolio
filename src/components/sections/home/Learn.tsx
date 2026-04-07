@@ -13,8 +13,8 @@ export default function Learn() {
         {/* Title */}
         <motion.h2
           className="learn-section-title"
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={scrollViewport}
           transition={scrollTransition}
         >
