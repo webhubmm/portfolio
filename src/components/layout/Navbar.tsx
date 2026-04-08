@@ -142,17 +142,23 @@ export default function Navbar() {
             transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
             className="md:hidden fixed inset-y-0 left-0 w-full max-w-full min-h-screen bg-white z-40 flex flex-col pt-24 pb-12 px-6 shadow-xl"
           >
-            <nav className="flex flex-col items-center justify-center flex-1 gap-4 text-center">
-              {navLinks.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={() => setIsOpen(false)}
-                  className="link-nav-hover text-primary py-2 text-2xl font-medium"
-                >
-                  {label}
-                </Link>
-              ))}
+            <nav
+              className="flex flex-col items-center justify-center flex-1 text-center"
+              aria-label="Main navigation"
+            >
+              <ul className="mobile-nav-menu-list flex flex-col items-center gap-1 list-none m-0 p-0 w-full max-w-sm">
+                {navLinks.map(({ href, label }) => (
+                  <li key={href} className="w-full">
+                    <Link
+                      href={href}
+                      onClick={() => setIsOpen(false)}
+                      className="link-nav-hover text-primary py-3 text-2xl font-medium block w-full"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </nav>
             <div className="mt-auto pt-6 flex justify-center">
               <a

@@ -28,7 +28,6 @@ export const metadata: Metadata = {
 const sections = [
   {
     id: "custom-software-development",
-    title: "Custom Software Development",
     subtitle: "Scalable, Secure & High-Performance Digital Solutions",
     intro: [
       "At WebHub Asia, we specialize in building custom software solutions that align perfectly with your business goals. Whether you're a startup or enterprise, we design and develop systems that are scalable, secure, and optimized for performance.",
@@ -49,7 +48,6 @@ const sections = [
   },
   {
     id: "blockchain-development",
-    title: "Blockchain Development Services",
     subtitle: "Next-Generation Decentralized Solutions",
     intro: [
       "We provide advanced blockchain development services to help businesses build secure, transparent, and decentralized applications. Our team leverages cutting-edge technologies to deliver high-performance blockchain systems.",
@@ -70,7 +68,6 @@ const sections = [
   },
   {
     id: "ai-powered-solutions",
-    title: "AI Solutions & Intelligent Systems",
     subtitle: "Empowering Businesses with AI & Automation",
     intro: [
       "We help businesses leverage the power of Artificial Intelligence (AI) to automate processes, improve efficiency, and deliver smarter user experiences.",
@@ -90,7 +87,6 @@ const sections = [
   },
   {
     id: "ui-ux-product-design",
-    title: "UI/UX & Product Design Services",
     subtitle: "Design That Enhances User Experience & Drives Engagement",
     intro: [
       "Great products start with great design. We create visually stunning and highly functional UI/UX designs that provide seamless user experiences across all devices.",
@@ -153,8 +149,7 @@ export default function ServicesPage() {
                     </div>
                   </div>
                   <div className="project-story-copy order-1 md:order-none">
-                    <h2 className="project-story-title">{section.title}</h2>
-                    <p className="project-story-subtitle mt-2 md:mt-3">{section.subtitle}</p>
+                    <h2 className="project-story-subtitle mt-0 mb-0 md:mt-1">{section.subtitle}</h2>
                     {section.intro.map((paragraph, i) => (
                       <p key={i} className="project-story-text mt-4">
                         {paragraph}
@@ -168,17 +163,17 @@ export default function ServicesPage() {
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
-                    <Link
-                      href="/#contact"
-                      className="project-story-visit-btn mt-8 inline-flex w-fit"
-                    >
-                      <span className="project-story-visit-btn-label">Discuss this service</span>
-                    </Link>
                   </div>
                 </div>
               </section>
             );
           })}
+        </div>
+
+        <div className="flex justify-center mt-12 md:mt-16">
+          <Link href="/#contact" className="project-story-visit-btn inline-flex w-fit">
+            <span className="project-story-visit-btn-label">Discuss our services</span>
+          </Link>
         </div>
       </article>
       <Footer />

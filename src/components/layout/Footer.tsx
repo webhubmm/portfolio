@@ -82,27 +82,32 @@ export default function Footer() {
               priority
             />
           </Link>
-          <nav className="footer-links" aria-label="Footer navigation">
-            {footerLinks.map(({ href, label }) => (
-              <Link key={href} href={href} className="link-nav-hover">
-                {label}
-              </Link>
-            ))}
+          <nav className="footer-nav" aria-label="Footer navigation">
+            <ul className="footer-links-list">
+              {footerLinks.map(({ href, label }) => (
+                <li key={href}>
+                  <Link href={href} className="link-nav-hover">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </nav>
-          <div className="footer-icon-cards">
+          <ul className="footer-social-list" aria-label="Social media">
             {socialLinks.map(({ href, label, icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="footer-icon-card"
-              >
-                {icon}
-              </a>
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="footer-icon-card"
+                >
+                  {icon}
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
         <div className="footer-copyright">
           © WebHub Asia 2026, All Rights Reserved
