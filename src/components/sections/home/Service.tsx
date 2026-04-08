@@ -8,12 +8,58 @@ import customSoftwareImg from "@/assets/images/custom-software.png";
 import seProductImg from "@/assets/images/se-product.png";
 import aiProductImg from "@/assets/images/ai-product.png";
 
+const uiUxPlaceholderImg = customSoftwareImg;
+
+const services = [
+  {
+    id: "custom-software-development",
+    title: "Custom Software Development",
+    tagline: "Build Scalable Web & Mobile Applications for Modern Businesses",
+    body: "We develop high-performance, scalable custom software solutions tailored to your business needs — from web platforms to mobile apps. Our systems are designed for performance, security, and long-term growth.",
+    includes:
+      "LMS, CRM, ERP, POS, E-commerce platforms & mobile applications",
+    href: "/services#custom-software-development",
+    image: customSoftwareImg,
+    imageAlt: "Custom Software Development",
+  },
+  {
+    id: "blockchain-development",
+    title: "Blockchain Development Services",
+    tagline: "Secure, Transparent & Scalable Blockchain Solutions",
+    body: "We build end-to-end blockchain applications that power modern digital ecosystems. From crypto platforms to smart contracts, we deliver secure and scalable solutions for real-world use cases.",
+    includes: "Crypto exchanges, custom tokens, NFTs, trading platforms & Telegram bots",
+    href: "/services#blockchain-development",
+    image: seProductImg,
+    imageAlt: "Blockchain development",
+  },
+  {
+    id: "ai-powered-solutions",
+    title: "AI-Powered Solutions",
+    tagline: "Transform Your Business with AI & Automation",
+    body: "We integrate advanced AI technologies into your systems to automate workflows, enhance user experience, and unlock intelligent decision-making.",
+    includes: "AI chatbots, agentic AI systems, and AI integration into existing platforms",
+    href: "/services#ai-powered-solutions",
+    image: aiProductImg,
+    imageAlt: "AI-powered solutions",
+  },
+  {
+    id: "ui-ux-product-design",
+    title: "UI/UX & Product Design",
+    tagline: "Design That Converts, Engages & Scales",
+    body: "We create modern, intuitive, and user-focused designs that enhance usability and drive engagement across web and mobile platforms.",
+    includes: "Wireframes, UI/UX design, product design systems & custom branding",
+    href: "/services#ui-ux-product-design",
+    image: uiUxPlaceholderImg,
+    imageAlt: "UI/UX and product design",
+  },
+] as const;
+
 export default function Service() {
   return (
     <section id="service" className="section-container py-12 md:py-16 flex flex-col items-center">
-      <div className="service-container w-full flex flex-col items-center gap-10">
+      <div className="service-container w-full flex flex-col items-center gap-10 md:gap-12">
         <motion.h2
-          className="text-title text-primary mb-6"
+          className="text-title text-primary text-center"
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={scrollViewport}
@@ -22,110 +68,46 @@ export default function Service() {
           We Can <span className="text-secondary">Help</span> You build
         </motion.h2>
 
-        <div className="flex flex-col md:flex-row items-start md:items-center gap-6 text-start w-full">
-          <motion.h3
-            id="custom-development"
-            className="service-row-title"
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={scrollViewport}
-            transition={{ ...scrollTransition, delay: 0.08 }}
-          >
-            Custom Website & Mobile Development
-          </motion.h3>
-          <motion.div
-            className="flex flex-col gap-3 md:max-w-xl"
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={scrollViewport}
-            transition={{ ...scrollTransition, delay: 0.12 }}
-          >
-            <p className="service-row-content">
-              We built scalable web and mobile platforms delivering seamless user experiences, optimized performance, and long-term business growth globally.
-            </p>
-            <Link href="/services#custom-development" className="text-link text-start w-fit">
-              Learn more →
-            </Link>
-          </motion.div>
-        </div>
-
         <motion.div
-          className="w-full mt-4"
-          initial={{ opacity: 0, y: 28 }}
+          className="service-preview-grid w-full"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={scrollViewport}
-          transition={{ ...scrollTransition, delay: 0.18 }}
+          transition={{ ...scrollTransition, delay: 0.06 }}
         >
-          <div className="service-card relative flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 w-full h-full">
-              <Image
-                src={customSoftwareImg}
-                alt="Custom Website & Mobile Development"
-                fill
-                className="object-contain md:object-cover object-center"
-                sizes="(max-width: 768px) 100vw, 1200px"
-                priority={false}
-              />
-            </div>
-          </div>
+          {services.map((item, index) => (
+            <article key={item.id} className="service-preview-card">
+              <h3 id={item.id} className="service-preview-card-title service-row-title">
+                {item.title}
+              </h3>
+              <p className="service-row-content font-semibold text-primary mt-3">{item.tagline}</p>
+              <p className="service-row-content mt-3">{item.body}</p>
+              <p className="service-row-content text-sm md:text-base opacity-90 mt-3">
+                <span className="font-semibold">Includes:</span> {item.includes}
+              </p>
+              <Link href={item.href} className="text-link mt-4 inline-flex w-fit">
+                Learn more →
+              </Link>
+              <div className="service-preview-card-visual mt-auto pt-6">
+                <Image
+                  src={item.image}
+                  alt={item.imageAlt}
+                  fill
+                  className="object-contain p-3 md:p-4"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={index === 0}
+                />
+              </div>
+            </article>
+          ))}
         </motion.div>
 
         <motion.div
-          className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mt-4"
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={scrollViewport}
-          transition={{ ...scrollTransition, delay: 0.22 }}
-        >
-          <div className="flex flex-col items-center md:items-start">
-            <h3 id="blockchain" className="service-row-title">
-              End to end Blockchain Applications
-            </h3>
-            <p className="service-row-content mt-2">
-              Developed secure blockchain solutions with smart contracts, transparent transactions, and scalable architecture supporting real-world enterprise use cases.
-            </p>
-            <Link href="/services#blockchain" className="text-link mt-3 w-fit">
-              Learn more →
-            </Link>
-            <div className="service-feature-image-block mt-6 w-full max-w-[641px]">
-              <Image
-                src={seProductImg}
-                alt="Blockchain applications"
-                fill
-                className="object-contain p-4"
-                sizes="(max-width: 768px) 100vw, 641px"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center md:items-start">
-            <h3 id="ai-chatbots" className="service-row-title">
-              Integrated AI Chatbot Solutions
-            </h3>
-            <p className="service-row-content mt-2">
-              Implemented intelligent AI chatbots to automate support, enhance user engagement, and deliver accurate, real-time responses across platforms.
-            </p>
-            <Link href="/services#ai-chatbots" className="text-link mt-3 w-fit">
-              Learn more →
-            </Link>
-            <div className="service-feature-image-block mt-6 w-full max-w-[641px]">
-              <Image
-                src={aiProductImg}
-                alt="AI Chatbot solutions"
-                fill
-                className="object-contain p-4"
-                sizes="(max-width: 768px) 100vw, 641px"
-              />
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="w-full flex justify-center pt-4"
+          className="w-full flex justify-center pt-2"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={scrollViewport}
-          transition={{ ...scrollTransition, delay: 0.08 }}
+          transition={{ ...scrollTransition, delay: 0.1 }}
         >
           <Link href="/services" className="btn-base btn-primary inline-flex">
             Explore all services

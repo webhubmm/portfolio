@@ -1,73 +1,106 @@
-let's develop new section under We Can Help You build section
+let's improve our services section content
 
-🚀 How We Work
+I want these content and add new services in section  (if need image use double for now)
 
-A transparent, step-by-step process to turn your ideas into scalable digital products
+Custom Software Development
 
-01 — Discovery & Strategy
+Build Scalable Web & Mobile Applications for Modern Businesses
 
-We start by understanding your business, goals, and challenges. Through deep research and strategic planning, we define the right technology approach, product roadmap, and success metrics.
+We develop high-performance, scalable custom software solutions tailored to your business needs — from web platforms to mobile apps. Our systems are designed for performance, security, and long-term growth.
 
-What we do:
+Includes: LMS, CRM, ERP, POS, E-commerce platforms & mobile applications
 
-Business & product analysis
-Market & competitor research
-Technical consultation (AI, SaaS, Blockchain)
-Clear project roadmap
-02 — UI/UX Design
+Blockchain Development Services
 
-We design intuitive, modern, and user-focused interfaces that deliver seamless user experiences and align with your brand identity.
+Secure, Transparent & Scalable Blockchain Solutions
 
-What we do:
+We build end-to-end blockchain applications that power modern digital ecosystems. From crypto platforms to smart contracts, we deliver secure and scalable solutions for real-world use cases.
 
-Wireframes & user flows
-High-fidelity UI design
-Design systems & branding
-User experience optimization
-03 — Development
+Includes: Crypto exchanges, custom tokens, NFTs, trading platforms & Telegram bots
 
-Our engineering team builds scalable, high-performance applications using modern technologies and best practices.
+AI-Powered Solutions
 
-What we do:
+Transform Your Business with AI & Automation
 
-Frontend & backend development
-AI integration & automation
-Blockchain development (if required)
-API & system architecture
-04 — Testing & Quality Assurance
+We integrate advanced AI technologies into your systems to automate workflows, enhance user experience, and unlock intelligent decision-making.
 
-We ensure your product is reliable, secure, and ready for real-world users through rigorous testing and optimization.
+Includes: AI chatbots, agentic AI systems, and AI integration into existing platforms
 
-What we do:
+UI/UX & Product Design
 
-Functional & performance testing
-Security checks
-Bug fixing & optimization
-Cross-platform compatibility
-05 — Launch & Deployment
+Design That Converts, Engages & Scales
 
-We handle smooth deployment and ensure your product is fully ready to go live with confidence.
+We create modern, intuitive, and user-focused designs that enhance usability and drive engagement across web and mobile platforms.
 
-What we do:
-
-Cloud deployment (AWS, GCP, DigitalOcean)
-CI/CD setup
-Production monitoring
-Go-live support
-06 — Support & Scaling
-
-We don’t stop at launch. We continuously support, improve, and scale your product as your business grows.
-
-What we do:
-
-Ongoing maintenance & updates
-Performance optimization
-Feature enhancements
-Scaling infrastructure & systems
+Includes: Wireframes, UI/UX design, product design systems & custom branding
 
 
-I want design like horizontal accordion and first one is auto open 
+-----
 
-show number 01 , 02 , 03 etc.. and titles only , if click or hover on card , open and show content
+here is content for service detail page and make zip zap design for each services
 
-default color is #fff with border for each card and when open show with #161C3D color 
+Custom Software Development
+Scalable, Secure & High-Performance Digital Solutions
+
+At WebHub Asia, we specialize in building custom software solutions that align perfectly with your business goals. Whether you're a startup or enterprise, we design and develop systems that are scalable, secure, and optimized for performance.
+
+We focus on creating digital products that not only solve problems but also drive growth and efficiency.
+
+Our expertise includes:
+
+Learning Management Systems (LMS)
+Customer Relationship Management (CRM) systems
+Enterprise Resource Planning (ERP) solutions
+Point of Sale (POS) systems
+E-commerce platforms
+Custom web applications
+Mobile app development (iOS & Android)
+
+Blockchain Development Services
+Next-Generation Decentralized Solutions
+
+We provide advanced blockchain development services to help businesses build secure, transparent, and decentralized applications. Our team leverages cutting-edge technologies to deliver high-performance blockchain systems.
+
+From fintech platforms to Web3 ecosystems, we turn your blockchain ideas into reality.
+
+Our blockchain services include:
+
+Crypto exchange development
+Custom token creation (ERC-20, BEP-20, etc.)
+NFT marketplace & NFT development
+Trading platform development
+Smart contract development & auditing
+Telegram bot automation for crypto systems
+Web3 integration & decentralized apps (dApps)
+
+UI/UX & Product Design Services
+Design That Enhances User Experience & Drives Engagement
+
+Great products start with great design. We create visually stunning and highly functional UI/UX designs that provide seamless user experiences across all devices.
+
+Our design approach focuses on usability, accessibility, and conversion optimization.
+
+Our design services include:
+
+Wireframing & user journey mapping
+Web and mobile app UI/UX design
+Interactive prototypes
+Design systems & component libraries
+Branding & custom logo design
+Product design strategy
+
+AI Solutions & Intelligent Systems
+Empowering Businesses with AI & Automation
+
+We help businesses leverage the power of Artificial Intelligence (AI) to automate processes, improve efficiency, and deliver smarter user experiences.
+
+From simple chatbot integration to advanced agentic AI systems, we build intelligent solutions tailored to your needs.
+
+Our AI services include:
+
+AI chatbot development (customer support, automation)
+Agentic AI systems for business workflows
+AI-powered SaaS applications
+Machine learning model integration
+AI integration into existing platforms
+Automation tools & intelligent assistants

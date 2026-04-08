@@ -52,6 +52,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   * {
@@ -63,6 +65,8 @@
     color: var(--color-text-on-white);
     background-color: var(--color-surface);
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   /* Default headings use title font */
@@ -482,44 +486,230 @@
     line-height: 140%;
   }
 
-  /* Full width of container, same as about-counter-card */
-  .service-card {
-    width: 100%;
-    height: 300px;
-    border-radius: 28px;
-    background: radial-gradient(74.23% 74.59% at 50% 50%, #29398B 0%, #1D254F 100%);
-    position: relative;
-    overflow: hidden;
+  /* Home services: card grid (title above content; image at bottom of card) */
+  .service-preview-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  /* All card images (center + sides) same size as center */
-  .service-card-image-wrap {
-    width: 36%;
-    max-width: 320px;
-    height: 100%;
-    flex-shrink: 0;
-  }
-
-  @media (max-width: 768px) {
-    .service-card {
-      height: 260px;
+  @media (min-width: 768px) {
+    .service-preview-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.75rem;
     }
   }
 
-  /* Service feature blocks: title/content use .service-row-title and .service-row-content */
-  .service-feature-image-block {
+  @media (min-width: 1280px) {
+    .service-preview-grid {
+      gap: 2rem;
+    }
+  }
+
+  .service-preview-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 1.5rem 1.35rem 1.35rem;
+    border-radius: 24px;
+    border: 1px solid rgba(24, 34, 87, 0.12);
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(24, 34, 87, 0.04);
+  }
+
+  @media (min-width: 768px) {
+    .service-preview-card {
+      padding: 1.75rem 1.5rem 1.5rem;
+    }
+  }
+
+  .service-preview-card-title {
+    text-align: left;
     width: 100%;
-    max-width: 641px;
-    height: 300px;
-    border-radius: 28px;
-    background: radial-gradient(74.23% 74.59% at 50% 50%, #29398B 0%, #1D254F 100%);
+  }
+
+  .service-preview-card-visual {
     position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+    background: #f4f6fc;
     overflow: hidden;
   }
 
-  @media (max-width: 768px) {
-    .service-feature-image-block {
-      height: 240px;
+  /* Services detail page: plain image area (no rounded gradient “card” frame) */
+  .services-detail-media {
+    position: relative;
+    width: 100%;
+    min-height: 220px;
+    aspect-ratio: 4 / 3;
+  }
+
+  /* ---- How You Can Work With Us (engagement models) ---- */
+  .engagement-section-inner {
+    width: 100%;
+  }
+
+  .engagement-section-subtitle {
+    color: var(--color-text-on-white);
+    font-family: var(--font-tt-travels), sans-serif;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    font-weight: 500;
+    line-height: 150%;
+  }
+
+  .engagement-models-card {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    align-self: stretch;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 40px;
+    background: #d2d7ef;
+  }
+
+  .engagement-model-item {
+    display: flex;
+    width: 100%;
+    max-width: 720px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 46px;
+    box-sizing: border-box;
+  }
+
+  .engagement-model-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .engagement-model-item--divider {
+    border-top: 1px solid rgba(0, 21, 59, 0.14);
+    padding-top: 46px;
+  }
+
+  @media (min-width: 1024px) {
+    .engagement-models-card {
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: center;
+      padding: 28px 32px;
+    }
+
+    .engagement-model-item {
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: none;
+      width: auto;
+      align-self: stretch;
+      padding-bottom: 0;
+      padding-right: 28px;
+    }
+
+    .engagement-model-item:first-child {
+      padding-left: 0;
+    }
+
+    .engagement-model-item:last-child {
+      padding-right: 0;
+    }
+
+    .engagement-model-item--divider {
+      border-top: none;
+      padding-top: 0;
+      border-left: 1px solid rgba(0, 21, 59, 0.14);
+      padding-left: 28px;
+    }
+
+    .engagement-model-title {
+      max-width: 100%;
+    }
+  }
+
+  .engagement-model-title {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    color: #00153b;
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-size: clamp(1.75rem, 4.5vw, 48px);
+    font-style: normal;
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .engagement-model-tagline,
+  .engagement-model-body,
+  .engagement-model-list {
+    color: #354bbd;
+    font-family: var(--font-tt-travels), sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+  }
+
+  .engagement-model-tagline {
+    text-align: center;
+    margin: 0;
+    max-width: 36rem;
+    font-weight: 600;
+  }
+
+  .engagement-model-copy {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .engagement-model-body {
+    margin: 0;
+    text-align: center;
+  }
+
+  .engagement-model-why-label {
+    margin: 4px 0 0 0;
+    color: #354bbd;
+    font-family: var(--font-tt-travels), sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+
+  .engagement-model-list {
+    margin: 0;
+    padding-left: 1.35rem;
+    text-align: left;
+    list-style: disc;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .engagement-model-list li {
+    margin-bottom: 0.35rem;
+  }
+
+  @media (max-width: 640px) {
+    .engagement-models-card {
+      padding: 20px 16px;
+      border-radius: 28px;
+    }
+
+    .engagement-model-tagline,
+    .engagement-model-body,
+    .engagement-model-list {
+      font-size: 17px;
     }
   }
 
@@ -892,11 +1082,15 @@
       padding: 32px 24px;
       gap: 32px;
     }
-    /* Marquee cards full viewport width on mobile so track has defined width */
+    /* Card width follows the mask — avoids 100vw horizontal overflow on mobile */
+    .testimonial-marquee-mask {
+      container-type: inline-size;
+    }
     .testimonial-marquee-track .testimonial-card {
-      width: 100vw;
-      min-width: 100vw;
-      max-width: 100vw;
+      width: min(400px, 100cqw);
+      min-width: 0;
+      max-width: 100%;
+      margin: 0;
       box-sizing: border-box;
     }
   }
@@ -1140,7 +1334,25 @@
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
+    /* allow wheel/touch to scroll the page when inner area isn’t scrollable or at edges */
+    overscroll-behavior: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .how-we-work-panel-body--no-inner-scroll {
+      overflow-y: hidden;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .how-we-work-panel-body {
+      flex: none;
+      min-height: 0;
+      overflow-y: visible;
+      overflow-x: hidden;
+      will-change: auto;
+      padding-bottom: 1rem;
+    }
   }
 
   .how-we-work-panel-desc {
@@ -1185,17 +1397,14 @@
   }
 
   @media (max-width: 1023px) {
-    /* Same height open/closed; keep rows modest so stacked panels don’t dominate the page */
-    .how-we-work-inner {
-      --how-we-work-row-height: min(52vh, 400px);
+    /* Simple stacked accordion: natural height, compact closed rows */
+    .how-we-work-panel-num,
+    .how-we-work-panel-title {
+      font-size: clamp(1.35rem, 4.5vw, 1.85rem);
     }
 
-    .how-we-work-panel {
-      display: flex;
-      flex-direction: column;
-      height: var(--how-we-work-row-height);
-      min-height: var(--how-we-work-row-height);
-      max-height: var(--how-we-work-row-height);
+    .how-we-work-panel-head {
+      padding: 0.85rem 0.75rem;
     }
 
     .how-we-work-panel--open {
@@ -1208,10 +1417,10 @@
     }
 
     .how-we-work-panel:not(.how-we-work-panel--open) .how-we-work-panel-head {
-      flex: 1;
-      justify-content: center;
+      flex: none;
+      flex-direction: row;
       align-items: center;
-      min-height: 0;
+      justify-content: flex-start;
     }
   }
 
@@ -1340,6 +1549,11 @@
     opacity: 0.9;
   }
 
+  .contact-form-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
   @media (max-width: 768px) {
     .contact-form-card {
       padding: 32px 24px;
@@ -1382,6 +1596,36 @@
   @media (max-width: 640px) {
     .navbar-layout {
       padding: 20px var(--content-padding-x-mobile);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .navbar-layout.navbar-layout--grid {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      column-gap: 0.75rem;
+      justify-content: initial;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .navbar-layout.navbar-layout--grid {
+      column-gap: 1.25rem;
+    }
+  }
+
+  /* Compact CTA until xl so nav links have room */
+  .navbar-cta-meeting.btn-base {
+    padding: 11px 18px;
+    font-size: 0.875rem;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 1280px) {
+    .navbar-cta-meeting.btn-base {
+      padding: 20px 30px;
+      font-size: 1rem;
     }
   }
 

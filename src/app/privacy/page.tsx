@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen min-w-0 max-w-full overflow-x-hidden">
       <Navbar />
       <article className="section-container py-24">
         <div className="max-w-3xl mx-auto">

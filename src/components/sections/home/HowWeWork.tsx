@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { scrollViewport, scrollTransition } from "@/lib/scrollAnimations";
 
@@ -86,8 +86,53 @@ const steps = [
 
 const sliceEase = [0.22, 1, 0.36, 1] as const;
 
+function StepPanelBody({ step }: { step: (typeof steps)[number] }) {
+  return (
+    <>
+      <p className="how-we-work-panel-desc">{step.description}</p>
+      <p className="how-we-work-panel-what">What we do:</p>
+      <ul className="how-we-work-panel-list">
+        {step.bullets.map((b) => (
+          <li key={b}>{b}</li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
 export default function HowWeWork() {
   const [openIndex, setOpenIndex] = useState(0);
+  const [isLg, setIsLg] = useState(false);
+  /** When false on desktop, body doesn’t overflow — avoid trapping wheel on a non-scrollable region */
+  const [panelBodyScrollNeeded, setPanelBodyScrollNeeded] = useState(true);
+  const panelBodyRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setIsLg(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!isLg) return;
+    const el = panelBodyRef.current;
+    if (!el) return;
+    const measure = () => {
+      setPanelBodyScrollNeeded(el.scrollHeight > el.clientHeight + 2);
+    };
+    measure();
+    const ro = new ResizeObserver(() => {
+      requestAnimationFrame(measure);
+    });
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [isLg, openIndex]);
 
   return (
     <section
@@ -142,38 +187,49 @@ export default function HowWeWork() {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
+                      ref={panelBodyRef}
                       key={`how-we-body-${step.num}`}
-                      className="how-we-work-panel-body"
+                      className={`how-we-work-panel-body${
+                        isLg && !panelBodyScrollNeeded
+                          ? " how-we-work-panel-body--no-inner-scroll"
+                          : ""
+                      }`}
                       id={`how-we-work-content-${i}`}
                       role="region"
                       aria-labelledby={`how-we-work-trigger-${i}`}
-                      initial={{
-                        clipPath: "inset(0 100% 0 0)",
-                        opacity: 0.98,
-                      }}
-                      animate={{
-                        clipPath: "inset(0 0% 0 0)",
-                        opacity: 1,
-                      }}
-                      exit={{
-                        clipPath: "inset(0 0 0 100%)",
-                        opacity: 0.98,
-                      }}
+                      initial={
+                        isLg
+                          ? {
+                              clipPath: "inset(0 100% 0 0)",
+                              opacity: 0.98,
+                            }
+                          : false
+                      }
+                      animate={
+                        isLg
+                          ? {
+                              clipPath: "inset(0 0% 0 0)",
+                              opacity: 1,
+                            }
+                          : { opacity: 1 }
+                      }
+                      exit={
+                        isLg
+                          ? {
+                              clipPath: "inset(0 0 0 100%)",
+                              opacity: 0.98,
+                            }
+                          : { opacity: 1 }
+                      }
                       transition={{
                         clipPath: {
-                          duration: 0.72,
+                          duration: isLg ? 0.72 : 0,
                           ease: sliceEase,
                         },
-                        opacity: { duration: 0.35 },
+                        opacity: { duration: isLg ? 0.35 : 0 },
                       }}
                     >
-                      <p className="how-we-work-panel-desc">{step.description}</p>
-                      <p className="how-we-work-panel-what">What we do:</p>
-                      <ul className="how-we-work-panel-list">
-                        {step.bullets.map((b) => (
-                          <li key={b}>{b}</li>
-                        ))}
-                      </ul>
+                      <StepPanelBody step={step} />
                     </motion.div>
                   )}
                 </AnimatePresence>

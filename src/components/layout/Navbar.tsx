@@ -9,6 +9,8 @@ import logo from "@/assets/images/logo.png";
 const navLinks = [
   { href: "/#about", label: "About Us" },
   { href: "/#service", label: "Service" },
+  { href: "/#work-with-us", label: "Work With Us" },
+  { href: "/#how-we-work", label: "How We Work" },
   { href: "/#projects", label: "Projects" },
   { href: "/#testimonial", label: "Testimonials" },
   { href: "/#learn", label: "Learn" },
@@ -61,9 +63,9 @@ export default function Navbar() {
         !isAtTop ? "bg-white shadow-sm" : "bg-white"
       } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
-      <div className="navbar-layout relative">
+      <div className="navbar-layout navbar-layout--grid relative flex items-center justify-between">
         {/* Logo - left */}
-        <Link href="/" className="flex-shrink-0 z-10">
+        <Link href="/" className="flex-shrink-0 z-10 w-fit">
           <Image
             src={logo}
             alt="Logo"
@@ -74,23 +76,37 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Center links - desktop: truly centered in viewport (155px spacing) */}
-        <nav className="hidden md:flex items-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="link-nav-hover text-primary text-base font-medium"
-            >
-              {label}
-            </Link>
-          ))}
+        {/* Desktop: fills space between logo & CTA; links wrap instead of overlapping */}
+        <nav
+          className="hidden md:flex min-w-0 justify-center items-center px-1 lg:px-2"
+          aria-label="Main navigation"
+        >
+          <ul className="flex flex-wrap justify-center items-center gap-x-2 sm:gap-x-2.5 lg:gap-x-4 gap-y-1.5 max-w-full list-none m-0 p-0">
+            {navLinks.map(({ href, label }) => (
+              <li key={href} className="flex-shrink-0">
+                <Link
+                  href={href}
+                  className="link-nav-hover text-primary text-[0.8125rem] lg:text-sm xl:text-base font-medium whitespace-nowrap"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
 
         {/* Primary button - right */}
-        <div className="hidden md:block flex-shrink-0 z-10">
-          <a href="https://calendly.com/htetmyatsoe492/30min" target="_blank" rel="noopener noreferrer" className="btn-base btn-primary inline-flex">
-            Schedule a Meeting
+        <div className="hidden md:flex flex-shrink-0 z-10 justify-end items-center">
+          <a
+            href="https://calendly.com/htetmyatsoe492/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-base btn-primary navbar-cta-meeting inline-flex"
+          >
+            <span className="hidden xl:inline">Schedule a Meeting</span>
+            <span className="xl:hidden" title="Schedule a Meeting">
+              Schedule
+            </span>
           </a>
         </div>
 

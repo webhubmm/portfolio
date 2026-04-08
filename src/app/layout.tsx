@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Poppins } from "next/font/google";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
+
+const poppins = Poppins({
+  weight: ["800"],
+  subsets: ["latin"],
+  variable: "--font-poppins",
+  display: "swap",
+});
 
 /* Fonts */
 const futuraPT = localFont({
@@ -170,7 +178,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${futuraPT.variable} ${futuraPTCond.variable} ${ttTravels.variable} font-sans`}
+        className={`${futuraPT.variable} ${futuraPTCond.variable} ${ttTravels.variable} ${poppins.variable} font-sans`}
       >
         <script
           type="application/ld+json"
