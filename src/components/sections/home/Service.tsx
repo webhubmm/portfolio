@@ -1,14 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { scrollViewport, scrollTransition } from "@/lib/scrollAnimations";
-import customSoftwareImg from "@/assets/images/custom-software.png";
-import seProductImg from "@/assets/images/se-product.png";
-import aiProductImg from "@/assets/images/ai-product.png";
-
-const uiUxPlaceholderImg = customSoftwareImg;
 
 const services = [
   {
@@ -19,8 +13,6 @@ const services = [
     includes:
       "LMS, CRM, ERP, POS, E-commerce platforms & mobile applications",
     href: "/services#custom-software-development",
-    image: customSoftwareImg,
-    imageAlt: "Custom Software Development",
   },
   {
     id: "blockchain-development",
@@ -29,8 +21,6 @@ const services = [
     body: "We build end-to-end blockchain applications that power modern digital ecosystems. From crypto platforms to smart contracts, we deliver secure and scalable solutions for real-world use cases.",
     includes: "Crypto exchanges, custom tokens, NFTs, trading platforms & Telegram bots",
     href: "/services#blockchain-development",
-    image: seProductImg,
-    imageAlt: "Blockchain development",
   },
   {
     id: "ai-powered-solutions",
@@ -39,8 +29,6 @@ const services = [
     body: "We integrate advanced AI technologies into your systems to automate workflows, enhance user experience, and unlock intelligent decision-making.",
     includes: "AI chatbots, agentic AI systems, and AI integration into existing platforms",
     href: "/services#ai-powered-solutions",
-    image: aiProductImg,
-    imageAlt: "AI-powered solutions",
   },
   {
     id: "ui-ux-product-design",
@@ -49,8 +37,6 @@ const services = [
     body: "We create modern, intuitive, and user-focused designs that enhance usability and drive engagement across web and mobile platforms.",
     includes: "Wireframes, UI/UX design, product design systems & custom branding",
     href: "/services#ui-ux-product-design",
-    image: uiUxPlaceholderImg,
-    imageAlt: "UI/UX and product design",
   },
 ] as const;
 
@@ -75,7 +61,7 @@ export default function Service() {
           viewport={scrollViewport}
           transition={{ ...scrollTransition, delay: 0.06 }}
         >
-          {services.map((item, index) => (
+          {services.map((item) => (
             <article key={item.id} className="service-preview-card">
               <h3 id={item.id} className="service-preview-card-title service-row-title">
                 {item.title}
@@ -88,16 +74,6 @@ export default function Service() {
               <Link href={item.href} className="text-link mt-4 inline-flex w-fit">
                 Learn more →
               </Link>
-              <div className="service-preview-card-visual mt-auto pt-6">
-                <Image
-                  src={item.image}
-                  alt={item.imageAlt}
-                  fill
-                  className="object-contain p-3 md:p-4"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority={index === 0}
-                />
-              </div>
             </article>
           ))}
         </motion.div>

@@ -5,7 +5,6 @@ import HowYouCanWorkWithUs from "@/components/sections/home/HowYouCanWorkWithUs"
 import HowWeWork from "@/components/sections/home/HowWeWork";
 import Projects from "@/components/sections/home/Projects";
 import Testimonial from "@/components/sections/home/Testimonial";
-import Learn from "@/components/sections/home/Learn";
 import Contact from "@/components/sections/home/Contact";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -21,7 +20,6 @@ export default function Home() {
       <HowWeWork />
       <Projects />
       <Testimonial />
-      <Learn />
       <Contact />
       <Footer />
     </main>

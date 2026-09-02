@@ -9,8 +9,18 @@ import successStory1 from "@/assets/images/success-story-1.png";
 import successStory2 from "@/assets/images/success-story-2.png";
 import successStory3 from "@/assets/images/success-story-3.png";
 import successStory4 from "@/assets/images/success-story-4.png";
+import datshinPortfolio from "@/assets/images/datshin-portfolio.jpeg";
 
 const successStories = [
+  {
+    image: datshinPortfolio,
+    imageAlt: "Datshin Movie Platform",
+    title: "Datshin Movie Platform",
+    subtitle: "Scalable Movie Streaming Platform for Movies, Series, and Reels",
+    content:
+      "Successfully delivered Datshin, a scalable movie streaming platform for Movies, Series, and Reels, featuring an admin queue system, content management, and flexible advertisement management to streamline operations and enhance the viewer experience.",
+    url: "https://datshin.com",
+  },
   {
     image: successStory1,
     imageAlt: "VirtuLearn International",

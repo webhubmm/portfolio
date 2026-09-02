@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/images/logo.png";
+import ComingSoonBanner from "@/components/layout/ComingSoonBanner";
 
 const navLinks = [
   { href: "/#about", label: "About Us" },
@@ -13,7 +14,6 @@ const navLinks = [
   { href: "/#how-we-work", label: "How We Work" },
   { href: "/#projects", label: "Projects" },
   { href: "/#testimonial", label: "Testimonials" },
-  { href: "/#learn", label: "Learn" },
 ] as const;
 
 const SCROLL_THRESHOLD = 10;
@@ -58,11 +58,13 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-out ${
-        !isAtTop ? "bg-white shadow-sm" : "bg-white"
-      } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
-    >
+    <div className="site-header-stack">
+      <ComingSoonBanner />
+      <header
+        className={`site-header-nav w-full transition-all duration-300 ease-out ${
+          !isAtTop ? "bg-white shadow-sm" : "bg-white"
+        } ${isVisible || isOpen ? "translate-y-0" : "site-header-nav--hidden"}`}
+      >
       <div className="navbar-layout navbar-layout--grid relative flex items-center justify-between">
         {/* Logo - left */}
         <Link href="/" className="flex-shrink-0 z-10 w-fit">
@@ -174,6 +176,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+      </header>
+    </div>
   );
 }

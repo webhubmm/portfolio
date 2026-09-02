@@ -5,7 +5,6 @@ import whiteLogo from "@/assets/images/white-logo.svg";
 const footerLinks = [
   { href: "/#about", label: "About us" },
   { href: "/#service", label: "Services" },
-  { href: "/#learn", label: "Learn" },
   { href: "/#testimonial", label: "Testimonials" },
   { href: "/#contact", label: "Contact Us" },
   { href: "/privacy", label: "Privacy Policy" },
@@ -13,7 +12,7 @@ const footerLinks = [
 
 const socialLinks = [
   {
-    href: "https://wa.me/6660795235",
+    href: "https://wa.me/959420909936",
     label: "WhatsApp",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
