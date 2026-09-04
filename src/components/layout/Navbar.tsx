@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/images/logo.png";
-import ComingSoonBanner from "@/components/layout/ComingSoonBanner";
 
 const navLinks = [
   { href: "/#about", label: "About Us" },
@@ -59,7 +58,6 @@ export default function Navbar() {
 
   return (
     <div className="site-header-stack">
-      <ComingSoonBanner />
       <header
         className={`site-header-nav w-full transition-all duration-300 ease-out ${
           !isAtTop ? "bg-white shadow-sm" : "bg-white"

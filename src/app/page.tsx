@@ -8,11 +8,13 @@ import Testimonial from "@/components/sections/home/Testimonial";
 import Contact from "@/components/sections/home/Contact";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ProductBanner from "@/components/layout/ProductBanner";
 
 export default function Home() {
   return (
     <main className="min-h-screen min-w-0 max-w-full overflow-x-hidden">
       <Navbar />
+      <ProductBanner />
       <Hero />
       <About />
       <Service />
