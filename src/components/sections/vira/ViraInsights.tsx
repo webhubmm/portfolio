@@ -3,13 +3,14 @@
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/vira/SectionHeader";
 import TelegramCta from "@/components/vira/TelegramCta";
-import { viraMarketSignal, viraTrendReversal, viraWhaleAlert } from "@/content/vira";
+import { displayValue, signalClassName } from "@/lib/viraMarket";
 import { scrollViewport, staggerContainer, staggerItem } from "@/lib/scrollAnimations";
+import type { ViraMarketOverview } from "@/types/viraMarket";
 
 function Consensus({ bullish, total }: { bullish: number; total: number }) {
   return (
     <div className="flex gap-1.5" aria-hidden>
-      {Array.from({ length: total }).map((_, i) => (
+      {Array.from({ length: Math.max(total, 0) }).map((_, i) => (
         <span
           key={i}
           className={`vira-consensus-dot ${i < bullish ? "vira-consensus-dot--on" : ""}`}
@@ -19,10 +20,12 @@ function Consensus({ bullish, total }: { bullish: number; total: number }) {
   );
 }
 
-export default function ViraInsights() {
-  const signal = viraMarketSignal;
-  const whale = viraWhaleAlert;
-  const trend = viraTrendReversal;
+export default function ViraInsights({ overview }: { overview: ViraMarketOverview | null }) {
+  const analysis = overview?.market_analysis;
+  const whale = overview?.whale_alert;
+  const trend = overview?.trend_reversal;
+  const why = analysis?.why;
+  const consensus = why?.agent_consensus;
 
   return (
     <>
@@ -39,45 +42,70 @@ export default function ViraInsights() {
           viewport={scrollViewport}
         >
           <h3 className="font-subtitle text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-white">
-            {signal.title}
+            BTC Market Analysis
           </h3>
-          <div className="grid grid-cols-3 gap-3">
-            <div className="vira-stat-tile">
-              <span className="vira-stat-label">Signal</span>
-              <span className="vira-stat-value vira-signal-bullish">{signal.signal}</span>
-            </div>
-            <div className="vira-stat-tile">
-              <span className="vira-stat-label">Confidence</span>
-              <span className="vira-stat-value">{signal.confidence}%</span>
-            </div>
-            <div className="vira-stat-tile">
-              <span className="vira-stat-label">Time Horizon</span>
-              <span className="vira-stat-value">{signal.timeHorizon}</span>
-            </div>
-          </div>
-          <p className="vira-stat-label">Why?</p>
-          <div>
-            {signal.factors.map((factor) => (
-              <div key={factor.label} className="vira-factor-row">
-                <span className="vira-factor-label">{factor.label}</span>
-                <span className="vira-factor-value">{factor.value}</span>
+          {analysis ? (
+            <>
+              <div className="grid grid-cols-3 gap-3">
+                <div className="vira-stat-tile">
+                  <span className="vira-stat-label">Signal</span>
+                  <span className={`vira-stat-value ${signalClassName(analysis.signal)}`}>
+                    {analysis.signal}
+                  </span>
+                </div>
+                <div className="vira-stat-tile">
+                  <span className="vira-stat-label">Confidence</span>
+                  <span className="vira-stat-value">{analysis.confidence_pct}%</span>
+                </div>
+                <div className="vira-stat-tile">
+                  <span className="vira-stat-label">Time Horizon</span>
+                  <span className="vira-stat-value">{displayValue(analysis.time_horizon)}</span>
+                </div>
               </div>
-            ))}
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Risk</span>
-              <span className="vira-factor-value">{signal.risk}</span>
-            </div>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Agent Consensus</span>
-              <span className="vira-factor-value">
-                {signal.agentConsensus.bullish} / {signal.agentConsensus.total} Bullish
-              </span>
-            </div>
-          </div>
-          <Consensus bullish={signal.agentConsensus.bullish} total={signal.agentConsensus.total} />
-          <p className="text-sm text-white">
-            Signals are probabilistic market assessments, not guarantees.
-          </p>
+              <p className="vira-stat-label">Why?</p>
+              <div>
+                <div className="vira-factor-row">
+                  <span className="vira-factor-label">Technical Trend</span>
+                  <span className="vira-factor-value">{displayValue(why?.technical_trend)}</span>
+                </div>
+                <div className="vira-factor-row">
+                  <span className="vira-factor-label">Whale Activity</span>
+                  <span className="vira-factor-value">{displayValue(why?.whale_activity)}</span>
+                </div>
+                <div className="vira-factor-row">
+                  <span className="vira-factor-label">Momentum</span>
+                  <span className="vira-factor-value">{displayValue(why?.momentum)}</span>
+                </div>
+                <div className="vira-factor-row">
+                  <span className="vira-factor-label">Market Sentiment</span>
+                  <span className="vira-factor-value">{displayValue(why?.market_sentiment)}</span>
+                </div>
+                <div className="vira-factor-row">
+                  <span className="vira-factor-label">Derivatives</span>
+                  <span className="vira-factor-value">{displayValue(why?.derivatives)}</span>
+                </div>
+                <div className="vira-factor-row">
+                  <span className="vira-factor-label">Risk</span>
+                  <span className="vira-factor-value">{displayValue(why?.risk)}</span>
+                </div>
+                <div className="vira-factor-row">
+                  <span className="vira-factor-label">Agent Consensus</span>
+                  <span className="vira-factor-value">
+                    {displayValue(consensus?.label)}
+                  </span>
+                </div>
+              </div>
+              {consensus ? (
+                <Consensus bullish={consensus.bullish_votes} total={consensus.total_votes} />
+              ) : null}
+              <p className="text-sm text-white">
+                {analysis.disclaimer ??
+                  "Signals are probabilistic market assessments, not guarantees."}
+              </p>
+            </>
+          ) : (
+            <p className="text-white">Live market analysis is temporarily unavailable.</p>
+          )}
         </motion.article>
       </section>
 
@@ -94,30 +122,39 @@ export default function ViraInsights() {
           viewport={scrollViewport}
         >
           <h3 className="font-subtitle text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-white">
-            🐋 {whale.title}
+            🐋 {whale?.title ?? "Whale Alert"}
           </h3>
-          <p className="font-subtitle text-3xl md:text-4xl font-extrabold text-white">{whale.amount}</p>
-          <div>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Estimated Value</span>
-              <span className="vira-factor-value">{whale.estimatedValue}</span>
-            </div>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Activity</span>
-              <span className="vira-factor-value">{whale.activity}</span>
-            </div>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Market Context</span>
-              <span className="vira-factor-value">{whale.marketContext}</span>
-            </div>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Alert Level</span>
-              <span className="vira-factor-value">{whale.alertLevel}</span>
-            </div>
-          </div>
-          <p className="text-sm text-white">
-            Whale activity is context, not a prediction that Bitcoin will rise or fall.
-          </p>
+          {whale ? (
+            <>
+              <p className="font-subtitle text-3xl md:text-4xl font-extrabold text-white">
+                {whale.amount_display}
+              </p>
+              <div>
+                <div className="vira-factor-row">
+                  <span className="vira-factor-label">Estimated Value</span>
+                  <span className="vira-factor-value">{whale.estimated_value_display}</span>
+                </div>
+                <div className="vira-factor-row">
+                  <span className="vira-factor-label">Activity</span>
+                  <span className="vira-factor-value">{whale.activity}</span>
+                </div>
+                <div className="vira-factor-row">
+                  <span className="vira-factor-label">Market Context</span>
+                  <span className="vira-factor-value">{whale.market_context}</span>
+                </div>
+                <div className="vira-factor-row">
+                  <span className="vira-factor-label">Alert Level</span>
+                  <span className="vira-factor-value">{whale.alert_level}</span>
+                </div>
+              </div>
+              <p className="text-sm text-white">
+                {whale.disclaimer ??
+                  "Whale activity is context, not a prediction that Bitcoin will rise or fall."}
+              </p>
+            </>
+          ) : (
+            <p className="text-white">No recent whale alert is available.</p>
+          )}
           <TelegramCta variant="light" className="self-start">
             Get Whale Alerts on Telegram
           </TelegramCta>
@@ -138,38 +175,42 @@ export default function ViraInsights() {
           viewport={scrollViewport}
         >
           <h3 className="font-subtitle text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-white">
-            {trend.title}
+            {trend?.title ?? "BTC Trend Reversal"}
           </h3>
-          <motion.div variants={staggerItem}>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Previous Trend</span>
-              <span className="vira-factor-value">{trend.previousTrend}</span>
-            </div>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Current Conditions</span>
-              <span className="vira-factor-value">{trend.currentConditions}</span>
-            </div>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Technical</span>
-              <span className="vira-factor-value">{trend.technical}</span>
-            </div>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Momentum</span>
-              <span className="vira-factor-value">{trend.momentum}</span>
-            </div>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Whale Activity</span>
-              <span className="vira-factor-value">{trend.whaleActivity}</span>
-            </div>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">AI Assessment</span>
-              <span className="vira-factor-value">{trend.aiAssessment}</span>
-            </div>
-            <div className="vira-factor-row">
-              <span className="vira-factor-label">Risk</span>
-              <span className="vira-factor-value">{trend.risk}</span>
-            </div>
-          </motion.div>
+          {trend ? (
+            <motion.div variants={staggerItem}>
+              <div className="vira-factor-row">
+                <span className="vira-factor-label">Previous Trend</span>
+                <span className="vira-factor-value">{trend.previous_trend}</span>
+              </div>
+              <div className="vira-factor-row">
+                <span className="vira-factor-label">Current Conditions</span>
+                <span className="vira-factor-value">{trend.current_conditions}</span>
+              </div>
+              <div className="vira-factor-row">
+                <span className="vira-factor-label">Technical</span>
+                <span className="vira-factor-value">{trend.technical}</span>
+              </div>
+              <div className="vira-factor-row">
+                <span className="vira-factor-label">Momentum</span>
+                <span className="vira-factor-value">{trend.momentum}</span>
+              </div>
+              <div className="vira-factor-row">
+                <span className="vira-factor-label">Whale Activity</span>
+                <span className="vira-factor-value">{trend.whale_activity}</span>
+              </div>
+              <div className="vira-factor-row">
+                <span className="vira-factor-label">AI Assessment</span>
+                <span className="vira-factor-value">{trend.ai_assessment}</span>
+              </div>
+              <div className="vira-factor-row">
+                <span className="vira-factor-label">Risk</span>
+                <span className="vira-factor-value">{trend.risk}</span>
+              </div>
+            </motion.div>
+          ) : (
+            <p className="text-white">Live trend assessment is temporarily unavailable.</p>
+          )}
           <TelegramCta variant="light" className="self-start">
             Monitor BTC Trends
           </TelegramCta>

@@ -14,6 +14,7 @@ import ViraFaq from "@/components/sections/vira/ViraFaq";
 import ViraFinalCta from "@/components/sections/vira/ViraFinalCta";
 import { siteUrl } from "@/lib/site";
 import { VIRA_TELEGRAM_URL } from "@/lib/vira";
+import { fetchViraMarketOverview } from "@/lib/viraMarket";
 
 const title = "Vira AI — Bitcoin Market Intelligence";
 const description =
@@ -65,7 +66,14 @@ const productSchema = {
   sameAs: [VIRA_TELEGRAM_URL],
 };
 
-export default function ViraAiPage() {
+export default async function ViraAiPage() {
+  let overview = null;
+  try {
+    overview = await fetchViraMarketOverview();
+  } catch {
+    overview = null;
+  }
+
   return (
     <main className="vira-page min-h-screen min-w-0 max-w-full overflow-x-hidden">
       <script
@@ -73,13 +81,13 @@ export default function ViraAiPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
       <Navbar />
-      <ViraHero />
+      <ViraHero overview={overview} />
       <ViraTrust />
       <ViraAnalyzes />
       <ViraHowItWorks />
-      <ViraInsights />
+      <ViraInsights overview={overview} />
       <ViraAlerts />
-      <ViraProof />
+      <ViraProof initialHistory={overview?.prediction_history ?? null} />
       <ViraProduct />
       <ViraStory />
       <ViraFaq />

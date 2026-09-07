@@ -2149,6 +2149,22 @@
     color: #a3afef;
   }
 
+  .vira-signal-bearish {
+    color: #f2b8b8;
+  }
+
+  .vira-signal-neutral {
+    color: #fff;
+  }
+
+  .vira-change-up {
+    color: #a3afef;
+  }
+
+  .vira-change-down {
+    color: #f2b8b8;
+  }
+
   .vira-consensus-dot {
     width: 0.55rem;
     height: 0.55rem;
@@ -2303,6 +2319,14 @@
 
   .vira-insight-card .vira-signal-bullish {
     color: #a3afef;
+  }
+
+  .vira-insight-card .vira-signal-bearish {
+    color: #f2b8b8;
+  }
+
+  .vira-insight-card .vira-signal-neutral {
+    color: #fff;
   }
 
   .vira-factor-row {
