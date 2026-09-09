@@ -87,7 +87,7 @@ export default async function ViraAiPage() {
       <ViraHowItWorks />
       <ViraInsights overview={overview} />
       <ViraAlerts />
-      <ViraProof initialHistory={overview?.prediction_history ?? null} />
+      {/* <ViraProof initialHistory={overview?.prediction_history ?? null} /> */}
       <ViraProduct />
       <ViraStory />
       <ViraFaq />
